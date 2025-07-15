@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Percobaan GeoJSON Fullscreen dengan Popup</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    .popup-img {
+      width: 100px;
+      height: auto;
+      margin-top: 5px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script>
+    // Inisialisasi peta
+    var map = L.map('map').setView([-7.36, 109.655], 15);
+
+    // Tambahkan tile layer dari OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Data GeoJSON dengan properti tambahan
+    var geojsonData = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "nama": "F.F",
+            "alamat": "Kandangwangi RT 04 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh orang tua",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-09%20at%2019.46.45.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6554007, -7.360587]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "nama": "YN",
+            "alamat": "Kandangwangi RT 03 / RW 04",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh Kakak",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2010.08.51.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6556458, -7.3522673]
+          }
+        },
+                {
+          "type": "Feature",
+          "properties": {
+            "nama": "KR",
+            "alamat": "Kandangwangi RT 03 / RW 04",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh Kakak",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2010.07.56%20(1).jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6555284, -7.3523045]
+          }
+        },
+                        {
+          "type": "Feature",
+          "properties": {
+            "nama": "LS",
+            "alamat": "Kandangwangi RT 01 / RW 02",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh Kakak & ibu",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2017.26.47.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6494904, -7.3639632]
+          }
+        },
+                                {
+          "type": "Feature",
+          "properties": {
+            "nama": "RL",
+            "alamat": "Kandangwangi RT 01 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh orang tua",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-09%20at%2019.00.31.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6556169, -7.3643090]
+          }
+        },
+                                {
+          "type": "Feature",
+          "properties": {
+            "nama": "SR",
+            "alamat": "Kandangwangi RT 02 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh adik",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-09%20at%2018.39.13.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6544401, -7.3637268]
+          }
+        },
+                                        {
+          "type": "Feature",
+          "properties": {
+            "nama": "SON",
+            "alamat": "Kandangwangi RT 03 / RW 02",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh Orangtua",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.16.13.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6448891, -7.3631439]
+          }
+        },
+                                                {
+          "type": "Feature",
+          "properties": {
+            "nama": "NRH",
+            "alamat": "Kandangwangi RT 02 / RW 01",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh suami",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.18.50.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6530688, -7.3634937]
+          }
+        },
+                                                        {
+          "type": "Feature",
+          "properties": {
+            "nama": "AS",
+            "alamat": "Kandangwangi RT 05 / RW 01",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh istri dan anak",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.18.53%20(1).jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6515118, -7.3661933]
+          }
+        },
+                                                                {
+          "type": "Feature",
+          "properties": {
+            "nama": "SYI",
+            "alamat": "Kandangwangi RT 06 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh orangtua",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.18.43.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6573399, -7.3586682]
+          }
+        },
+                                                                        {
+          "type": "Feature",
+          "properties": {
+            "nama": "KDH & AGS",
+            "alamat": "Kandangwangi RT 04 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh adik kandung",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.17.24.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6558325, -7.3603168]
+          }
+        },
+                                                                               {
+          "type": "Feature",
+          "properties": {
+            "nama": "SDO",
+            "alamat": "Kandangwangi RT 04 / RW 03",
+            "diagnosa": "Skizofrenia",
+            "status_keluarga_pendamping": "Diasuh oleh adik kandung",
+            "gambar": "https://raw.githubusercontent.com/lala2003lal/lala2003lal/main/WhatsApp%20Image%202025-07-14%20at%2014.17.24.jpeg"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [109.6556095, -7.3601476]
+          }
+        }, 
+        // Tambahkan fitur lain di sini jika perlu
+      ]
+    };
+
+    // Tampilkan GeoJSON dengan popup
+    L.geoJSON(geojsonData, {
+      onEachFeature: function (feature, layer) {
+        var props = feature.properties;
+        var popupContent = "<strong>Nama:</strong> " + props.nama +
+                           "<br><strong>Alamat:</strong> " + props.alamat +
+                           "<br><strong>Diagnosa:</strong> " + props.diagnosa +
+                           "<br><strong>Status Keluarga / Pendamping:</strong> " + props.status_keluarga_pendamping +
+                           "<br><img class='popup-img' src='" + props.gambar + "' alt='Gambar Rumah'>";
+        layer.bindPopup(popupContent);
+      }
+    }).addTo(map);
+  </script>
+</body>
+</html>
